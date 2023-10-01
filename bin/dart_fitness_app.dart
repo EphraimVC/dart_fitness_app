@@ -1,8 +1,52 @@
 import "package:dart_fitness_app/exercice_list.dart";
+import "package:dart_fitness_app/workout_routine.dart";
 
 void main() {
-  options();
+  Routine lists = Routine("workouts", [arms]);
+  Routine lists2 = Routine("workouts", [back]);
+  for (List<Exercise> exerciseList in lists.exercises) {
+    for (Exercise exercise in exerciseList) {
+      print(exercise.exerciseName);
+      print(exercise.link);
+      print(exercise.group);
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
