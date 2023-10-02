@@ -1,20 +1,23 @@
 import "package:dart_fitness_app/exercice_list.dart";
 import "package:dart_fitness_app/workout_routine.dart";
+import "package:dart_fitness_app/hive_classes.dart";
+import 'package:hive/hive.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 
-void main() {
-  Routine lists = Routine("workouts", [arms]);
-  Routine lists2 = Routine("workouts", [back]);
-  for (List<Exercise> exerciseList in lists.exercises) {
-    for (Exercise exercise in exerciseList) {
-      print(exercise.exerciseName);
-      print(exercise.link);
-      print(exercise.group);
-    }
-  }
+Future<void> initializeHive() async {
+  final appDocumentDirectory = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDirectory.path);
+
+  Hive.registerAdapter<HiveExercise>(ExerciseAdapter());
+  Hive.registerAdapter<HiveRoutine>(RoutineAdapter());
+
+  print('Hive initialized');
 }
 
-
-
+void main() async {
+  await initializeHive(); // Call the initialization function
+}
 
 
 
